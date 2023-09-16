@@ -1,3 +1,4 @@
+//level order or breadth first search
 function Node(data) {
   this.data = data;
   this.left = null;
@@ -54,6 +55,23 @@ function findHeight(root) {
   return Math.max(leftHeight, rightHeight) + 1;
 }
 
+function levelOrder(root) {
+  if (root === null) {
+    return;
+  }
+  let queue = [];
+  let levelOrder = [];
+  queue.push(root);
+  while (queue.length > 0) {
+    let temp = queue.shift();
+    // console.log(temp.data);
+    levelOrder.push(temp.data);
+    temp.left && queue.push(temp.left);
+    temp.right && queue.push(temp.right);
+  }
+  console.log(levelOrder);
+}
+
 let root = null;
 
 root = insert(root, 15);
@@ -64,8 +82,4 @@ root = insert(root, 8);
 root = insert(root, 12);
 root = insert(root, 11);
 
-console.log(search(root, 11));
-
-// inorder(root);
-
-console.log(findHeight(root));
+levelOrder(root);
