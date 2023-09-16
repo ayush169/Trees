@@ -27,13 +27,36 @@ function search(root, data) {
   }
 }
 
+//recursive
+// function findMin(root) {
+//   if (root === null) {
+//     return null;
+//   } else if (root.left === null) {
+//     return root.data;
+//   } else {
+//     return findMin(root.left);
+//   }
+// }
+
+//iterative
 function findMin(root) {
   if (root === null) {
     return null;
-  } else if (root.left === null) {
+  } else {
+    while (root.left !== null) {
+      root = root.left;
+    }
+    return root.data;
+  }
+}
+
+function findMax(root) {
+  if (root === null) {
+    return null;
+  } else if (root.right === null) {
     return root.data;
   } else {
-    return findMin(root.left);
+    return findMax(root.right);
   }
 }
 
@@ -46,14 +69,26 @@ function inorder(node) {
 }
 
 let root = null;
-
-root = insert(root, 15);
-root = insert(root, 10);
-root = insert(root, 20);
 root = insert(root, 25);
+root = insert(root, 10);
+root = insert(root, 35);
+root = insert(root, 5);
+root = insert(root, 17);
+root = insert(root, 40);
+root = insert(root, 20);
+root = insert(root, 15);
+root = insert(root, 3);
 root = insert(root, 8);
-root = insert(root, 12);
+root = insert(root, 1);
+root = insert(root, 4);
+root = insert(root, 6);
+root = insert(root, 9);
+root = insert(root, 39);
+root = insert(root, 42);
 
 // console.log(search(root, 12));
+
+console.log(findMin(root));
+console.log(findMax(root));
 
 // inorder(root);
